@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name     = "sequel_extjs"
   s.version  = "0.1"
-  s.date     = "2008-12-10"
+  s.date     = "2008-12-16"
   s.summary  = "Transform Sequel Datasets to ExtJS JsonStore feed"
   s.email    = "gyordanov@gmail.com"
   s.homepage = "http://github.com/gyordanov/sequel_extjs"
