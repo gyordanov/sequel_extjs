@@ -1,0 +1,29 @@
+== is :ExtJS
+
+Add a to_extjs function to any Sequel Dataset, it will generate json that is consumable by the ExtJS JsonStore.
+
+Take a look at Sequel::Plugins::ExtJS::DatasetMethods.to_extjs function for more information.
+
+== Usage
+   # this will require the Sequel's ExtJS plugin
+   require 'sequel_extjs'
+   # this will add .to_extjs on the Array class, so you can use the same code for datasets and array results
+   # not required, if you don't like additions to the Array class
+   require 'array_extjs'
+ 
+   class MyModel < Sequel::Model(:mymodel) 
+      is :ExtJS
+    end
+ 
+   # now output all MyModel records in a way the JsonStore expects:
+   MyModel.to_extjs
+   # or use any filters before that
+   MyModel.filter(:status => true).to_exts
+   # or limit it for pagination
+   cnt = MyModel.filter(:status => true).count
+   MyModel.filter(:status => true).limit(10,100).to_extjs(cnt)
+   # also give it a block and it will more or less work like a 'map'
+   MyModel.filter(:status => true).to_exts do |rec|
+     rec[:newprop] = "Status is #{rec.status}"
+     rec
+   end
